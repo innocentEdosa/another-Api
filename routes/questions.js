@@ -27,4 +27,6 @@ router.post('/', // this route handles requests for creating a new question
   ],
   questionController.createQuestion);
 
+router.patch('/:questionId/upvote', questionController.upvote);
+
 module.exports = router;
