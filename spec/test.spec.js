@@ -69,4 +69,21 @@ describe('Questioner Api', () => {
       expect(data.body).toBeDefined();
     });
   });
+  // test for endpoint /meetups/:meetup for retrieving a specific post
+  describe('GET /meetups/:meetup', () => {
+    const data = {};
+    beforeAll((done) => {
+      request.get('http://localhost:3004/api/v1/meetups/1', (error, res, body) => {
+        data.status = res.statusCode;
+        data.body = JSON.parse(body);
+        done();
+      });
+    });
+    it('Status 200', () => {
+      expect(data.status).toBe(200);
+    });
+    it('body', () => {
+      expect(data.body).toBeDefined();
+    });
+  });
 });
