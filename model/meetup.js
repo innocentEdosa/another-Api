@@ -1,4 +1,14 @@
-const meetup = [];
+const meetup = [{
+  id: 2,
+  createdOn: 'when the meetp was created',
+  location: 'location',
+  images: 'this is the imgae url',
+  topic: 'meetup topic',
+  happeningOn: 'this is when the meetup is happening',
+  tags: ['business', 'entertianment', 'refrigerator', 'sleepless night'],
+  description: 'this s a very short description of this meetup',
+  noOfQuestions: 4,
+}];
 
 // create a class to handle the meetup array
 module.exports = class Meetup {
@@ -27,5 +37,19 @@ module.exports = class Meetup {
 
   static getAll() {
     return meetup;
+  }
+
+  static findMeetup(meetupId) {
+    const Id = Number(meetupId);
+    const found = [];
+    for (let i = 0; i < meetup.length; i += 1) {
+      if (meetup[i].id === Id) {
+        // const questions = this.getQuestions(meetup[i].id);
+        // meetup[i].questions = questions;
+        found.push(meetup[i]);
+        return found;
+      }
+    }
+    return -1;
   }
 };
