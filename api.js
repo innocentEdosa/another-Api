@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-// eslint-disable-next-line eol-last
 app.use(bodyParser.json());
 
 //  import routers
