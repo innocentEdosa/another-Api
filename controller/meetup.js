@@ -33,3 +33,14 @@ exports.getMeetups = (req, res) => {
   }
   return res.status(200).json({ status: 200, data: meetup });
 };
+
+// this controller returns a specific meetup
+exports.getMeetup = (req, res) => {
+  const { meetupId } = req.params;
+  // check of meetup exists
+  const found = Meetup.findMeetup(meetupId);
+  if (found < 0) {
+    return res.status(404).json({ status: 404, error: 'The requested post does not exist! Try with an appropriate meetupId' });
+  }
+  return res.status(200).json({ status: 200, data: found });
+};
