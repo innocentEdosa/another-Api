@@ -10,6 +10,9 @@ const meetupController = require('../controller/meetup');
 // request list of all meetup
 router.get('/', meetupController.getMeetups);
 
+// request for all upcoming(based on when they are happening) meetup
+router.get('/upcoming', meetupController.getUpcoming);
+
 // request for a specific meetup
 router.get('/:meetupId', meetupController.getMeetup);
 

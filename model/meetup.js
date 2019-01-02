@@ -1,13 +1,13 @@
 const meetup = [{
-  id: 2,
-  createdOn: 'when the meetp was created',
-  location: 'location',
+  id: 3,
+  createdOn: new Date(),
+  location: 'aduwawa',
   images: 'this is the imgae url',
-  topic: 'meetup topic',
-  happeningOn: 'this is when the meetup is happening',
-  tags: ['business', 'entertianment', 'refrigerator', 'sleepless night'],
-  description: 'this s a very short description of this meetup',
-  noOfQuestions: 4,
+  topic: 'This is the best meetup ever ',
+  happeningOn: new Date(2019, 2, 1),
+  tags: ['business', 'entertianment'],
+  description: 'this is a very short description of this very second meetup',
+  noOfQuestions: 2,
 }];
 
 // create a class to handle the meetup array
@@ -51,5 +51,15 @@ module.exports = class Meetup {
       }
     }
     return -1;
+  }
+
+  static getUpcomingMeetup() {
+    const upcoming = [];
+    for (let i = 0; i < meetup.length; i += 1) {
+      if (meetup[i].happeningOn > new Date()) {
+        upcoming.push(meetup[i]);
+      }
+    }
+    return upcoming;
   }
 };
