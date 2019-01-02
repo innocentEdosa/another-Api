@@ -123,4 +123,19 @@ describe('Questioner Api', () => {
       expect(data.body).toBeDefined();
     });
   });
+  // creating rsvp
+  describe('POST /meetups/:meetupId/rsvps', () => {
+    const data = {};
+    beforeAll((done) => {
+      request.post('http://localhost:3004/api/v1/meetups/1/rsvps', (error, res, body) => {
+        data.status = res.statusCode;
+        data.body = body;
+        done();
+      });
+    });
+    it('status 200', () => {
+      expect(data.status).toEqual(404);
+      expect(data.body).toBeDefined();
+    });
+  });
 });
