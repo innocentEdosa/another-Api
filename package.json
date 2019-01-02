@@ -5,7 +5,8 @@
   "main": "api.js",
   "scripts": {
     "test-init": "node node_modules/jasmine/bin/jasmine.js init",
-    "test": "jasmine"
+    "test": "jasmine",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
