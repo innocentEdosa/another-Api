@@ -24,3 +24,12 @@ exports.createMeetup = (req, res) => {
   meetup.create(location, images, topic, happeningOn, tags, description, createdBy);
   return res.status(201).json({ status: 201, data: meetup });
 };
+
+// this controller returns list of all meetup
+exports.getMeetups = (req, res) => {
+  const meetup = Meetup.getAll();
+  if (meetup.length === 0) {
+    return res.status(204).json({ status: 204, data: [{ info: 'No meetup yet' }] });
+  }
+  return res.status(200).json({ status: 200, data: meetup });
+};

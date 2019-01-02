@@ -7,6 +7,9 @@ const router = express.Router();
 //  import the meetup controller
 const meetupController = require('../controller/meetup');
 
+// request list of all meetup
+router.get('/', meetupController.getMeetups);
+
 // request the creation of a new meetup
 router.post('/',
 // add simple validation to post middleware using express-validator
@@ -33,5 +36,6 @@ router.post('/',
   }),
   ], // validation block ends here
   meetupController.createMeetup);
+
 
 module.exports = router;
