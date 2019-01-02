@@ -86,4 +86,41 @@ describe('Questioner Api', () => {
       expect(data.body).toBeDefined();
     });
   });
+  // test for creating questions
+  describe('POST /questions', () => {
+    const data = {};
+    beforeAll((done) => {
+      request.post('http://localhost:3004/api/v1/questions', {
+        json: {
+          createdBy: 2,
+          meetup: 4,
+          title: 'the fouth question',
+          body: 'lorem is the body of this question',
+        },
+      }, (error, res, body) => {
+        data.status = res.statusCode;
+        data.body = body;
+        done();
+      });
+    });
+    it('status 201', () => {
+      expect(data.status).toBe(201);
+      expect(data.body).toBeDefined();
+    });
+  });
+  //  test for creating questions when passed the wrong params
+  describe('POST /questions', () => {
+    const data = {};
+    beforeAll((done) => {
+      request.post('http://localhost:3004/api/v1/questions', (error, res, body) => {
+        data.status = res.statusCode;
+        data.body = body;
+        done();
+      });
+    });
+    it('status 422', () => {
+      expect(data.status).toBe(422);
+      expect(data.body).toBeDefined();
+    });
+  });
 });
