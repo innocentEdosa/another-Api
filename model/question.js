@@ -37,4 +37,21 @@ module.exports = class Question {
     }
     return -1;
   }
+
+  static downvote(questionId) {
+    const Id = Number(questionId);
+    const found = [];
+    for (let i = 0; i < question.length; i += 1) {
+      if (question[i].id === Id) {
+        if (question[i].vote === 0) {
+          found.push(question[i]);
+          return found;
+        }
+        question[i].vote -= 1;
+        found.push(question[i]);
+        return found;
+      }
+    }
+    return -1;
+  }
 };
