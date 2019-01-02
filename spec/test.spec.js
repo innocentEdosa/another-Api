@@ -29,4 +29,29 @@ describe('Questioner Api', () => {
       expect(data.body.data[0]).toBeDefined();
     });
   });
+  // test for endpoint /post which creates a meetup with the right params!
+  describe('POST /meetups', () => {
+    const data = {};
+    beforeAll((done) => {
+      request.post('http://localhost:3004/api/v1/meetups', {
+        json: {
+          location: 'venue',
+          happeningOn: 'when',
+          images: 'imagurl',
+          topic: 'thrid meetup',
+          tags: ['tags'],
+          description: 'insight must be more',
+          createdBy: 'innocentEdosa',
+        },
+      }, (error, res, body) => {
+        data.status = res.statusCode;
+        data.body = body;
+        done();
+      });
+    });
+    it('status 201', () => {
+      expect(data.status).toBe(201);
+      expect(data.body).toBeDefined();
+    });
+  });
 });
