@@ -54,4 +54,19 @@ describe('Questioner Api', () => {
       expect(data.body).toBeDefined();
     });
   });
+  // test for POST/meetups not creating any meetup due to invalid params
+  describe('POST /meetups', () => {
+    const data = {};
+    beforeAll((done) => {
+      request.post('http://localhost:3004/api/v1/meetups', (error, res, body) => {
+        data.status = res.statusCode;
+        data.body = body;
+        done();
+      });
+    });
+    it('status 422', () => {
+      expect(data.status).toBe(422);
+      expect(data.body).toBeDefined();
+    });
+  });
 });
