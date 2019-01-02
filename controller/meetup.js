@@ -34,6 +34,15 @@ exports.getMeetups = (req, res) => {
   return res.status(200).json({ status: 200, data: meetup });
 };
 
+// this controller returns all upcoming meetup based on their happening date
+exports.getUpcoming = (req, res) => {
+  const upcoming = Meetup.getUpcomingMeetup();
+  if (upcoming.length === 0) {
+    return res.status(204).json({ status: 200, data: [{ info: 'No upcoming meetup' }] });
+  }
+  return res.status(200).json({ status: 200, data: upcoming });
+};
+
 // this controller returns a specific meetup
 exports.getMeetup = (req, res) => {
   const { meetupId } = req.params;
