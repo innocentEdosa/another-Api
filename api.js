@@ -20,5 +20,5 @@ app.use('/api/v1/questions', questionRoutes);
 app.use('/api/v1/meetups/:meetup/rsvp', rsvpRoutes);
 
 const server = http.createServer(app);
-server.listen(3004, () => {});
+server.listen(process.env.PORT || 3004);
 module.exports = server;
