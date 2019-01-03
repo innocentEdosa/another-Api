@@ -34,20 +34,25 @@ exports.createQuestion = (req, res) => { // handles the creation of new question
   return res.status(201).json({ status: 201, data: question });
 };
 
-exports.upvote = (req, res) => { // handles the upvote of a specific question
-  const { questionId } = req.params;
-  const upvote = Question.upvote(questionId);
-  if (upvote < 0) {
-    return res.status(404).json({ status: 404, error: 'This question does not exist' });
+exports.vote = (votetype) => {
+  if (votetype === 'upvote') {
+    return (req, res) => { // handles the upvote of a specific question
+      const { questionId } = req.params;
+      const upvote = Question.upvote(questionId);
+      if (upvote < 0) {
+        return res.status(404).json({ status: 404, error: 'This question does not exist' });
+      }
+      return res.status(200).json({ status: 200, data: upvote });
+    };
   }
-  return res.status(200).json({ status: 200, data: upvote });
-};
-
-exports.downvote = (req, res) => { // handles the downvote of a specific question
-  const { questionId } = req.params;
-  const downvote = Question.downvote(questionId);
-  if (downvote < 0) {
-    return res.status(404).json({ status: 404, error: 'This question does not exist' });
+  if (votetype === 'downvote') {
+    return (req, res) => { // handles the downvote of a specific question
+      const { questionId } = req.params;
+      const downvote = Question.downvote(questionId);
+      if (downvote < 0) {
+        return res.status(404).json({ status: 404, error: 'This question does not exist' });
+      }
+      return res.status(200).json({ status: 200, data: downvote });
+    };
   }
-  return res.status(200).json({ status: 200, data: downvote });
 };
