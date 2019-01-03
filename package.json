@@ -5,9 +5,9 @@
   "main": "api.js",
   "scripts": {
     "test-init": "node node_modules/jasmine/bin/jasmine.js init",
-    "test": "jasmine",
+    "test": "nyc jasmine",
     "start": "nodemon app.js",
-    "coverage": "istanbul cover jasmine-node --captureExceptions spec/ && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -25,12 +25,14 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "istanbul": "^0.4.5",
-    "jasmine": "^3.3.1"
+    "jasmine": "^3.3.1",
+    "nyc": "^13.1.0"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-validator": "^5.3.1",
+    "jasmine-node": "^1.16.2",
     "nodemon": "^1.18.9",
     "request": "^2.88.0"
   }
