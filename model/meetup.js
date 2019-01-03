@@ -62,4 +62,13 @@ module.exports = class Meetup {
     }
     return upcoming;
   }
+
+  static getTopic(meetupId) {
+    for (let i = 0; i < meetup.length; i += 1) {
+      if (meetup[i].id === meetupId) {
+        return meetup[i].topic;
+      }
+    }
+    return -1;
+  }
 };
