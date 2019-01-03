@@ -9,6 +9,14 @@ const app = express();
 
 app.use(bodyParser.json());
 
+// fix cors errors
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 //  import routers
 const meetupRoutes = require('./routes/meetup');
 const questionRoutes = require('./routes/questions');
