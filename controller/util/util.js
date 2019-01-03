@@ -4,7 +4,18 @@ const printErr = (errorArr) => {
   return Temp;
 };
 
+const errorCheck = (error, res) => {
+  if (!error.isEmpty()) {
+    const errorMessages = printErr(error.array());
+    return res.status(422).json({
+      status: 422,
+      error: errorMessages,
+    });
+  }
+  return true;
+};
 
 module.exports = {
   printError: printErr,
+  checkError: errorCheck,
 };
