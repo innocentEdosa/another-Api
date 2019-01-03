@@ -13,13 +13,7 @@ exports.createQuestion = (req, res) => { // handles the creation of new question
   // create an error variable to hold error collected by express-validate body in the route
   const error = validationResult(req);
   // if the error variable is not empty reply user with the appropriate error message
-  if (!error.isEmpty()) {
-    const errorMessages = util.printError(error.array());
-    return res.status(422).json({
-      status: 422,
-      error: errorMessages,
-    });
-  }
+  util.checkError(error, res);
   // check if meetup exist before creating a question
   const meetupCheck = Meetup.findMeetup(meetup);
   if (meetupCheck === -1) {
